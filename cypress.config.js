@@ -7,7 +7,8 @@ export default defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {
+    baseUrl: 'https://qauto.forstudy.space',
     specPattern: 'cypress/e2e/**/*.cy.js',
-    supportFile: false,
+    supportFile: 'cypress/support/e2e.js',
   },
 })
