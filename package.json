@@ -8,11 +8,16 @@
     "cy:open:chrome": "cypress open --browser chrome",
     "cy:run:chrome": "cypress run --browser chrome",
     "cy:run:headed:chrome": "cypress run --headed --browser chrome",
+    "cy:open:qauto": "cypress open --browser chrome --config-file cypress.qauto.config.js",
+    "cy:open:qauto2": "cypress open --browser chrome --config-file cypress.qauto2.config.js",
+    "cy:run:qauto": "cypress run --browser chrome --config-file cypress.qauto.config.js",
+    "cy:run:qauto2": "cypress run --browser chrome --config-file cypress.qauto2.config.js",
     "lint": "eslint cypress/"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
     "cypress": "^15.17.0",
+    "cypress-mochawesome-reporter": "^4.0.2",
     "eslint": "^10.4.1",
     "eslint-plugin-cypress": "^6.4.1"
   }
