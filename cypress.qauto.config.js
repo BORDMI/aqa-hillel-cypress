@@ -8,9 +8,7 @@ export default defineConfig({
     baseUrl: 'https://qauto.forstudy.space',
   },
   env: {
-    BASIC_AUTH_USERNAME: 'guest',
-    BASIC_AUTH_PASSWORD: 'welcome2qauto',
+    ...baseConfig.env,
     USER_EMAIL: 'aqa.garage.qauto@example.com',
-    USER_PASSWORD: 'Password123',
   },
 })

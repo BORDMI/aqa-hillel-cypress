@@ -20,6 +20,9 @@ export default defineConfig({
     html: true,
     json: true,
   },
+  env: {
+    USER_PASSWORD: 'Password123',
+  },
   e2e: {
     baseUrl: 'https://qauto.forstudy.space',
     specPattern: 'cypress/e2e/**/*.cy.js',
