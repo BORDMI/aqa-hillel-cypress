@@ -41,6 +41,10 @@ class GaragePage {
     return elements.carNames().first()
   }
 
+  checkFirstCarNameIsEqual(carName) {
+    return this.firstCarName().should('have.text', carName)
+  }
+
   clickAddFuelExpenseForFirstCar() {
     elements.addFuelExpenseButtons().first().click()
     return this

@@ -1,6 +1,7 @@
 import { homePage } from '../pages/home.page'
 import { signInModal } from '../pages/components/signin.modal'
 import { garagePage } from '../pages/garage.page'
+import { garageApi } from '../api/garageApi'
 
 Cypress.Commands.overwrite('visit', (originalFn, url, options = {}) => {
   return cy
@@ -37,32 +38,26 @@ Cypress.Commands.add('login', (email, password) => {
   garagePage.shouldBeOpen()
 })
 
+Cypress.Commands.add('loginByApi', (email, password) => {
+  cy.session([email, 'qauto'], () => {
+    garageApi.signIn(email, password)
+  })
+})
+
 Cypress.Commands.add('clearBrowserStorages', () => {
   cy.clearAllCookies()
   cy.clearAllLocalStorage()
   cy.clearAllSessionStorage()
 })
 
+Cypress.Commands.add('createExpense', (payload) => {
+  return garageApi.createExpense(payload)
+})
+
 Cypress.Commands.add('resetCars', () => {
-  cy.env([
-    'BASIC_AUTH_USERNAME',
-    'BASIC_AUTH_PASSWORD',
-    'USER_EMAIL',
-    'USER_PASSWORD',
-  ]).then(({ BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD, USER_EMAIL, USER_PASSWORD }) => {
-    const auth = { username: BASIC_AUTH_USERNAME, password: BASIC_AUTH_PASSWORD }
-
-    cy.request({
-      method: 'POST',
-      url: '/api/auth/signin',
-      auth,
-      body: { email: USER_EMAIL, password: USER_PASSWORD, remember: false },
-    })
-
-    cy.request({ method: 'GET', url: '/api/cars', auth }).then(({ body }) => {
-      body.data.forEach((car) => {
-        cy.request({ method: 'DELETE', url: `/api/cars/${car.id}`, auth })
-      })
+  garageApi.getCars().then(({ body }) => {
+    body.data.forEach((car) => {
+      garageApi.deleteCar(car.id)
     })
   })
 })

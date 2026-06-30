@@ -5,7 +5,7 @@ class Car {
 
   constructor(overrides = {}) {
     this.brand = overrides.brand ?? 'Audi'
-    this.model = overrides.model ?? faker.helpers.arrayElement(AUDI_MODELS)
+    this.model = overrides.model ?? faker.helpers.arrayElement(Car.AUDI_MODELS)
     this.mileage = overrides.mileage ?? faker.number.int({ min: 100, max: 500 })
   }
 
