@@ -6,3 +6,5 @@ cypress/downloads/
 cypress/reports/
 
 cypress.env.json
+
+.idea/
